@@ -8,5 +8,4 @@ export const filmeSchema = joi.object<CreatFilme>({
     plataforma: joi.string().required(),
     resumo:joi.string(),
     status: joi.boolean().required()
-
 })

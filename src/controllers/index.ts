@@ -18,7 +18,7 @@ async function creatMovie(req: Request, res: Response) {
 
 async function TakeMovie(req:Request,res:Response) {
     try{
-        const movies = await MoviesSevice.TakeMovie()
+        const movies = await MoviesSevice.TakeMovies()
         res.status(200).send(movies)
     }catch(err){
         res.sendStatus(500);
@@ -26,9 +26,36 @@ async function TakeMovie(req:Request,res:Response) {
     
 }
 
+async function updateMovie(req:Request,res:Response) {
+    const id:number = Number(req.params.id);
+    const filme =req.body as CreatFilme;
+    
+    try{
+        const movie = await MoviesSevice.takeMovieById(id,filme)
+        res.status(200).send('Updated values succefully')
+    }catch(err){
+        console.log(err)
+        res.status(500).send(err.message);
+    }
+    
+}
+
+async function deleteMovie(req:Request,res:Response) {
+    try{
+        /* const movies = await MoviesSevice.TakeMovie()
+        res.status(200).send(movies) */
+    }catch(err){
+        res.sendStatus(500);
+    }
+    
+}
+
+
 const moviesControllers = {
     creatMovie,
-    TakeMovie
+    TakeMovie,
+    updateMovie,
+    deleteMovie
 }
 
 export default moviesControllers
