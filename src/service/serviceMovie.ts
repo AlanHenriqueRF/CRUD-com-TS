@@ -1,4 +1,4 @@
-import { existMovie, postMovie } from "../repository/index";
+import { existMovie, getMovie, postMovie } from "../repository/index";
 import { CreatFilme, filme } from "../protocols/index";
 
 async function CreatMovie(filme:CreatFilme){
@@ -26,8 +26,13 @@ async function alredyExistMovie(filme:CreatFilme):Promise<boolean>{
     return false
 }
 
+async function TakeMovie() {
+    return (await getMovie()).rows
+}
+
 const MoviesSevice = {
-    CreatMovie
+    CreatMovie,
+    TakeMovie
 }
 
 export default MoviesSevice
