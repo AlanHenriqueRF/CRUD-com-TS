@@ -4,11 +4,11 @@ Para que o projeto funcione deve-se adicionar uma pasta chamada "database" e den
 
 Entretanto criando a pasta("database") e o arquivo("connection.ts") dito acima, deve-se apenas colocar o seguinte código, mudando apenas onde é dito para mudar: 
 
-  ## import pg from "pg";
+  ``` import pg from "pg";
   
-  ## const { Pool } = pg;
+  const { Pool } = pg;
   
-  ## const db = new Pool({
+  const db = new Pool({
       host: "localhost",
       port: 5432,
       user: "SeuUserPostgress", // Mude Aqui com o seu user
@@ -16,4 +16,4 @@ Entretanto criando a pasta("database") e o arquivo("connection.ts") dito acima, 
       database: "Movies"
   ## })
   
-  ## export default db
+  ## export default db```
