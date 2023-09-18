@@ -1,7 +1,7 @@
 import joi from "joi";
-import {filme} from "../protocols/index";
+import {CreatFilme} from "../protocols/index";
 
-export const filmeSchema = joi.object<filme>({
+export const filmeSchema = joi.object<CreatFilme>({
     nome: joi.string().required(),
     gênero: joi.string().required(),
     nota: joi.number().min(0).max(10),
