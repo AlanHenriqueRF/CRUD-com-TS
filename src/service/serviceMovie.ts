@@ -1,4 +1,4 @@
-import { existMovie, getMovie, getMovieByid, postMovie, updateMovie } from "../repository/index";
+import { deleteMovie, existMovie, getMovie, getMovieByid, postMovie, updateMovie } from "../repository/index";
 import { CreatFilme, filme } from "../protocols/index";
 
 async function CreatMovie(filme:CreatFilme){
@@ -31,18 +31,28 @@ async function TakeMovies():Promise<filme[]> {
 }
 
 async function takeMovieById(id:number,filme:CreatFilme) {
-    let movie = (await getMovieByid(id)).rows
+    const movie = (await getMovieByid(id)).rows
     if (movie.length !== 1 ){
-        throw { message: `No one movie find with this id ${id} or more of one movie finded`}
+        throw { message: `No one movie find with this id ${id} or more of one movie finded!`}
     }
     
     await updateMovie(id,filme.nome, filme.plataforma, filme.gênero,filme.status, filme.nota, filme.resumo )
 }
 
+async function DeleteMovie(id:number) {
+    const movie = (await getMovieByid(id)).rows
+    if (movie.length !== 1 ){
+        throw { message: `No one movie find with this id ${id} or more of one movie finded!`}
+    }
+
+    await deleteMovie(id)
+}
+
 const MoviesSevice = {
     CreatMovie,
     TakeMovies,
-    takeMovieById
+    takeMovieById,
+    DeleteMovie
 }
 
 export default MoviesSevice

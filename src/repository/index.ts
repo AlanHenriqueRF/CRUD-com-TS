@@ -18,7 +18,6 @@ export async function getMovieByid(id:number) {
 }
 
 export async function updateMovie(id: number, nome: string, plataforma: string, gênero: string, status: boolean, nota: number | undefined, resumo: string | undefined) {
-    console.log(nome, plataforma, gênero, status, nota, resumo,id)
     return (await db.query<filme>('UPDATE movie SET nome = $1, plataforma=$2, gênero=$3, status=$4, nota=$5, resumo = $6 WHERE id =$7;',[nome, plataforma, gênero, status, nota, resumo,id]))
 }
 

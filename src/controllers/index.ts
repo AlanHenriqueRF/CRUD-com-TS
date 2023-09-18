@@ -28,11 +28,11 @@ async function TakeMovie(req:Request,res:Response) {
 
 async function updateMovie(req:Request,res:Response) {
     const id:number = Number(req.params.id);
-    const filme =req.body as CreatFilme;
+    const movie = req.body as CreatFilme;
     
     try{
-        const movie = await MoviesSevice.takeMovieById(id,filme)
-        res.status(200).send('Updated values succefully')
+        await MoviesSevice.takeMovieById(id,movie)
+        res.status(200).send('Updated values succefully!')
     }catch(err){
         console.log(err)
         res.status(500).send(err.message);
@@ -41,11 +41,13 @@ async function updateMovie(req:Request,res:Response) {
 }
 
 async function deleteMovie(req:Request,res:Response) {
+    const id = Number(req.params.id)
     try{
-        /* const movies = await MoviesSevice.TakeMovie()
-        res.status(200).send(movies) */
+        await MoviesSevice.DeleteMovie(id)
+        res.status(200).send('Deleted value succesfully!')
     }catch(err){
-        res.sendStatus(500);
+        console.log(err)
+        res.status(500).send(err.message);
     }
     
 }
